@@ -1,15 +1,13 @@
 #第一步：基于K-means对用户进行分组
 import DataProcess
 from sklearn.cluster import KMeans
-from sklearn.metrics.pairwise import cosine_similarity
-import UserRecommendation
 from collections import Counter
 #数据预处理，独热编码——特征离散化
 
 def hotCode():
     DataProcess.labelData()
-    user_list=DataProcess.userData()
-    label_list,area_list=DataProcess.labelData()
+    user_list= DataProcess.userData()
+    label_list,area_list= DataProcess.labelData()
     # print(user_list)
 
     user_list_vec = []
@@ -70,7 +68,7 @@ def groupData():
     # 原本的用户特征：[0, '用户_1_科技_广西_AI', [0, 3, 0]] #
     #print(user_list)
     # 分组信息和用户信息整合
-    user_list=DataProcess.userData()
+    user_list= DataProcess.userData()
     group_user_list = []
     for i, row in enumerate(user_list):
         # 用户记录，追加：独热编码后的特征与组信息

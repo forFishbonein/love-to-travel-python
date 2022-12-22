@@ -5,7 +5,7 @@ import random
 from sklearn.metrics.pairwise import cosine_similarity
 
 def userRe():
-    group_user_list=UserGroup.groupData()
+    group_user_list= UserGroup.groupData()
     g_idx = 3
     # print("选定的分组信息为：", g_idx)
 
@@ -25,7 +25,7 @@ def userRe():
 
     # 提前每一篇文章的特征
     # ['文章ID', '文章标题', '文章特征(栏目,地域,标签)'] [1, '文章_1学习_上海_C/C++', [3, 1, 3]]
-    wenz_list=DataProcess.noteData()
+    wenz_list= DataProcess.noteData()
     wenz_vec_list = []
     for row in wenz_list:
         wenz_vec_list.append(row[-1])
@@ -37,7 +37,7 @@ def userRe():
 def noteHotCode():
     wenz_list_vec = []
     wenz_vec_list,target_g_users,target_user=userRe()
-    user_vec_list,label_onehot_tpl,area_onehot_tpl=UserGroup.hotCode()
+    user_vec_list,label_onehot_tpl,area_onehot_tpl= UserGroup.hotCode()
     for row in wenz_vec_list:
         # 对栏目进行独热编码（平展开来）
         #     topic_vec = topic_onehot_tpl.copy()

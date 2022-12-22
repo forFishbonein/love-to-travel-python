@@ -4,7 +4,7 @@
 import UserRecommendation
 import DataProcess
 def recommenduser():
-    target_wenz_list,target_g_view_list,target_g_wenz_list=UserRecommendation.personalRe()
+    target_wenz_list,target_g_view_list,target_g_wenz_list= UserRecommendation.personalRe()
 
     level_1_list = target_wenz_list
     print("第一优先级推荐：", level_1_list)
@@ -25,7 +25,7 @@ def recommenduser():
     print("第四优先级推荐：", level_4_list)
 
 
-    wenz_vec_list,target_g_users,target_user=UserRecommendation.userRe()
+    wenz_vec_list,target_g_users,target_user= UserRecommendation.userRe()
     print("给目标用户：id=({}),昵称=({})，推荐的文章列表为：".format(target_user[1], target_user[2]))
     print("-" * 50)
 
@@ -33,7 +33,7 @@ def recommenduser():
     print("-" * 50)
 
 
-    wenz_list=DataProcess.noteData()
+    wenz_list= DataProcess.noteData()
     for wid in level_1_list:
         # 文章编号与文章标题
         print("{}, {}".format(wenz_list[wid][0], wenz_list[wid][1]))
