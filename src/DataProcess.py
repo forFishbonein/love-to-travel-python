@@ -7,6 +7,14 @@ def labelData():
     df = pd.read_excel(r"D:\学习\大三\实训\数据\总游记数据.xlsx")
     df_city = pd.read_excel('D:\学习\大三\实训\python\数据\citydate.xlsx')
 
+    client = MongoClient('mongodb://travelservice:W6xDFpnZb86hH7mj@47.98.138.0:27017/travelservice?')
+    ##指定要操作的数据库，test
+    db = client.travelservice
+    ##限定数据库表，plan
+    mycol = db["_id"]
+    list_id = mycol.distinct( "_id")
+    list_nid = list_id[99:]
+
     df['trip'].fillna("-", inplace=True)
     list_trip = list(set(df['trip']))
     list_res = []
@@ -43,7 +51,7 @@ def noteData():
                 area_idx = k
         title = "游记_{}_{}_{}".format(i, area_list[area_idx], label_list[label_idx])
 
-        wenz_list.append([i, title, [area_idx, label_idx]])
+        wenz_list.append([list_nid[i], title, [area_idx, label_idx]])
     return wenz_list
 
 
