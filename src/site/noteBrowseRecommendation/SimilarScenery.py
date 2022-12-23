@@ -53,7 +53,7 @@ def modelTrain():
     # print(df_data)
     k = 10   #聚类的类别
     iteration = 400  #聚类最大循环次数
-    print(1.0*(df_data-df_data.mean()))
+    # print(1.0*(df_data-df_data.mean()))
     data_zs = 1.0*(df_data-df_data.mean())/df_data.std()   #数据标准化
 
     #构建kmeans模型
@@ -67,7 +67,7 @@ def modelTrain():
     r = pd.concat([r2,r1],axis =1)  #得到聚类中心对应的类别下的数目
 
     r.columns = list(df_data.columns) + ['类别数目']    #重命名表头
-    print(r)
+    # print(r)
 
     r = pd.concat([df_data, pd.Series(model.labels_,index =df_data.index)],axis =1)
     r.columns = list(df_data.columns) + ['聚类类别']

@@ -91,12 +91,12 @@ def noteHotCode():
         user_rec_list1.append(sorted_sim_list[:10])
 
     # print("组用户的推荐列表信息：")
-    for i, wlis in enumerate(user_rec_list1):
+    # for i, wlis in enumerate(user_rec_list1):
         # print("-" * 50)
         # print("用户信息：", target_g_users[i])
         # print("-" * 50)
-        for w in wlis:
-            print("文章编号：{}，相似度: {}".format(w[0], w[1]))
+        # for w in wlis:
+            # print("文章编号：{}，相似度: {}".format(w[0], w[1]))
 
     return target_g_users,user_rec_list1
 
@@ -113,14 +113,14 @@ def personalRe():
             continue
         for w in wlis:
             target_wenz_list.append(w[0])
-    print("用户个人的推荐列表信息: ", target_wenz_list)
+    # print("用户个人的推荐列表信息: ", target_wenz_list)
 
     # 组成员的文章推荐列表信息（只提前文章编号）
     target_g_wenz_list = []
     for i, wlis in enumerate(user_rec_list1):
         for w in wlis:
             target_g_wenz_list.append(w[0])
-    print("组成员个人推荐的文章列表的合集：", target_g_wenz_list)
+    # print("组成员个人推荐的文章列表的合集：", target_g_wenz_list)
     #U3
 
     # 模拟组用户浏览了一些文章
@@ -135,11 +135,11 @@ def personalRe():
         idx = random.randint(0, len(wenz_vec_list))
         if idx not in target_g_view_list:
             target_g_view_list.append(idx)
-    print("组成员最近浏览的文章列表合集:", target_g_view_list)
+    # print("组成员最近浏览的文章列表合集:", target_g_view_list)
     return target_wenz_list,target_g_view_list,target_g_wenz_list
     #U2
 def atest():
     print("dddd")
 
 if __name__ == "__main__":
-    personalRe()
+    print(personalRe()[2])

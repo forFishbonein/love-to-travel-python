@@ -1,19 +1,14 @@
 import pandas as pd
+from pymongo import MongoClient
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 
 def labelData():
     # 城市数据
-    df = pd.read_excel(r"D:\学习\大三\实训\数据\总游记数据.xlsx")
-    df_city = pd.read_excel('D:\学习\大三\实训\python\数据\citydate.xlsx')
+    df = pd.read_excel(r"D:\肖红娇\项目\爱旅游网站\原始数据\游记数据2.xlsx")
+    df_city = pd.read_excel(r'D:\肖红娇\项目\爱旅游网站\原始数据\省份城市\cityData.xls')
 
-    client = MongoClient('mongodb://travelservice:W6xDFpnZb86hH7mj@47.98.138.0:27017/travelservice?')
-    ##指定要操作的数据库，test
-    db = client.travelservice
-    ##限定数据库表，plan
-    mycol = db["_id"]
-    list_id = mycol.distinct( "_id")
-    list_nid = list_id[99:]
+
 
     df['trip'].fillna("-", inplace=True)
     list_trip = list(set(df['trip']))
@@ -29,9 +24,21 @@ def labelData():
     return label_list, area_list
 # 游记数据
 
-df_text = pd.read_excel('D:\学习\大三\实训\数据\总游记数据.xlsx')
+df_text = pd.read_excel(r'D:\肖红娇\项目\爱旅游网站\原始数据\全花销游记2.xlsx')
+
+def getID():
+    client = MongoClient('mongodb://travelservice:W6xDFpnZb86hH7mj@47.98.138.0:27017/travelservice?')
+    ##指定要操作的数据库，test
+    db = client.travelservice
+    ##限定数据库表，plan
+    mycol = db["_id"]
+    list_id = mycol.distinct( "_id")
+    list_nid = list_id[99:]
+    return list_nid
+
 
 def noteData():
+    list_nid = getID()
     wenz_list = []
     label_list,area_list  = labelData()
 

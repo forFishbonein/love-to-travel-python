@@ -1,0 +1,56 @@
+import sceneryClustering as sc
+import pymysql
+import pandas as pd
+
+
+def getData():
+    conn = sc.get_conn()
+    sql = "select * from scenery"
+    list_res=[['id','评分','门票','城市adcode','聚类类别']]
+    try:
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        tup=cursor.fetchall()
+        # print(len(tup))
+        for item in tup:
+            list_res.append([str(item[0]),str(item[3]),str(item[4]),str(item[13]),str(item[19])])
+
+    except pymysql.Error as e:
+        print('连接失败')
+    # with open('sceneryId.txt', 'w',encoding='UTF-8') as outf:
+    #     for i in range(1,len(list_res)):
+    #         outf.write(list_res[i][0])
+    #         outf.write('\n')
+    df=pd.DataFrame(list_res[1:len(list_res)-100],columns=list_res[0])
+    return df
+
+def Recommmendation(scan_list):
+    #景区推荐:猜你喜欢,根据浏览记录推荐
+
+    r = getData()
+    # scan_list=[3,4,10]
+    # item=4
+    list_res=[]
+    for item in scan_list:
+        type_list=[]
+        for i in range(0,len(r['评分'])):
+            if i!=2102 and i!=2475  and  i!=5697  and i!=7455 and i!=7943 and i!=7944 and i!=8364 and i!=10119 and i!=10443 and item == r['id'][i]:
+                for k in range(0,len(r['评分'])):
+                    if k!=2102 and k!=2475  and  k!=5697  and k!=7455 and k!=7943 and k!=7944 and k!=8364 and k!=10119 and k!=10443 and r['聚类类别'][i]==r['聚类类别'][k] and i!=k:
+                        type_list.append([r['id'][k],r['评分'][k]])
+                    #                     print(type_list)
+        #             print(r['聚类类别'][i])
+
+        type_list = sorted(type_list, key=lambda row: row[1], reverse=True)[:3]
+        for item in type_list:
+            list_res.append(item)
+    #     print(type_list)
+
+    list_res= sorted(list_res, key=lambda row: row[1], reverse=True)[:5]
+    print(list_res)
+    return list_res
+
+if __name__ == '__main__':
+    # Recommmendation()
+    print(getData())
+    # print(Recommmendation([3,4,10]))

@@ -46,8 +46,8 @@ def groupData():
     user_vec_list,label_onehot_tpl,area_onehot_tpl=hotCode()
     #构造k-means模型
     model = KMeans(n_clusters = k)
-    print(user_vec_list)
-
+    # print(user_vec_list)
+    #
     #进行分组（训练）
     model.fit(user_vec_list)
 
