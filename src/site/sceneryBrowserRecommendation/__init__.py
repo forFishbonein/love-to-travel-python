@@ -2,7 +2,6 @@
 from flask import Flask, make_response, request
 from flask_cors import CORS
 from google.protobuf.api_pb2 import Api
-
 import recommmendation as rc
 app = Flask(__name__)
 # r'/*' 是通配符，让本服务器所有的 URL 都允许跨域请求
@@ -16,17 +15,18 @@ app = Flask(__name__)
 #     res.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
 #     return res
 
-@app.route('/sce/<scan1>/<scan2>/<scan3>/',methods=["GET","OPTIONS"]) #
+@app.route('/sce/<scan1>/<scan2>/<scan3>',methods=["GET","OPTIONS"]) #
 def sce(scan1,scan2,scan3):
     # print(scan_str)
     # scan1 = request.args.get('scan1')
     # scan2 = request.args.get('scan2')
     # scan3 = request.args.get('scan3')
-    scan_list = [scan1,scan2,scan3]
+    str_list = [scan1,scan2,scan3]
+    scan_list = [int(x) for x in str_list]
     print(scan_list)
-    # resScenery=rc.getJson(scan_list)
-    # print(resScenery)
-    # return resScenery
+    resScenery=rc.getJson(scan_list)
+    print(resScenery)
+    return resScenery
 
 # @app.route('/sd', methods=["GET","OPTIONS"])
 # def sce2():
