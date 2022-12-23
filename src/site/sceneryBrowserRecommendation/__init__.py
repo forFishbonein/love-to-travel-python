@@ -1,5 +1,5 @@
 # from bottle import route
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 from flask_cors import CORS
 from google.protobuf.api_pb2 import Api
 
@@ -16,13 +16,17 @@ app = Flask(__name__)
 #     res.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
 #     return res
 
-@app.route('/sd/<scan_str>', methods=["GET","OPTIONS"])
-def sce(scan_str):
-    # print(usrNo)
-    scan_list = scan_str.split(",")
-    resScenery=rc.getJson(scan_list)
-    print(resScenery)
-    return resScenery
+@app.route('/sce/<scan1>/<scan2>/<scan3>/',methods=["GET","OPTIONS"]) #
+def sce(scan1,scan2,scan3):
+    # print(scan_str)
+    # scan1 = request.args.get('scan1')
+    # scan2 = request.args.get('scan2')
+    # scan3 = request.args.get('scan3')
+    scan_list = [scan1,scan2,scan3]
+    print(scan_list)
+    # resScenery=rc.getJson(scan_list)
+    # print(resScenery)
+    # return resScenery
 
 # @app.route('/sd', methods=["GET","OPTIONS"])
 # def sce2():
@@ -31,4 +35,4 @@ def sce(scan_str):
 
 CORS(app, resources=r'/*')
 if __name__ == "__main__":
-    app.run('localhost','8080')
+    app.run('localhost','8086')
