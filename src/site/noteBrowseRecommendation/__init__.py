@@ -3,7 +3,7 @@ from flask import Flask, make_response
 from flask_cors import CORS
 from google.protobuf.api_pb2 import Api
 
-import recommmendation as rc
+import UserRecommendation as rc
 app = Flask(__name__)
 # r'/*' 是通配符，让本服务器所有的 URL 都允许跨域请求
 # api = Api(app)
@@ -16,10 +16,9 @@ app = Flask(__name__)
 #     res.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
 #     return res
 
-@app.route('/sd/<scan_str>', methods=["GET","OPTIONS"])
-def sce(scan_str):
+@app.route('/sd/<scan_list>', methods=["GET","OPTIONS"])
+def sce(scan_list):
     # print(usrNo)
-    scan_list = scan_str.split(",")
     resScenery=rc.getJson(scan_list)
     print(resScenery)
     return resScenery
