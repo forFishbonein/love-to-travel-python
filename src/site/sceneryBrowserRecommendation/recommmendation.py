@@ -24,7 +24,7 @@ def getData():
     #     for i in range(1,len(list_res)):
     #         outf.write(list_res[i][0])
     #         outf.write('\n')
-    df=pd.DataFrame(list_res[1:7000],columns=list_res[0])
+    df=pd.DataFrame(list_res[1:len(list_res)],columns=list_res[0])
     return df,list_show
 
 def Recommmendation(scan_list):
@@ -62,7 +62,7 @@ def getJson(scan_list):
     arr=Recommmendation(scan_list)
 
     arrSce=np.array(arr)
-    # print(arrSce)
+    print(arrSce)
     x1list=arrSce[:,0]
     x2list=arrSce[:,1]
     x3list=arrSce[:,2]
@@ -77,7 +77,7 @@ def getJson(scan_list):
     # print(resDict)
     return resDict
 
-if __name__ == '__main__':
-    # Recommmendation()
-    Recommmendation([3,5,10])
-    # print(Recommmendation([3,4,10]))
+# if __name__ == '__main__':
+#     # Recommmendation()
+#     Recommmendation([3,5,10])
+#     # print(Recommmendation([3,4,10]))
