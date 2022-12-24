@@ -84,8 +84,8 @@ def SceneryData():
 
 
 def vecUser_train():
-    model = gensim.models.Word2Vec.load(r"D:\git\love-to-travel\love-to-travel-cloud\travelservice\src\main\resources\static\tensorflowRecommendation\data\userid.word2vec")
-    file=open(r'D:\git\love-to-travel\love-to-travel-cloud\travelservice\src\main\resources\static\tensorflowRecommendation\data\userid.txt')
+    model = gensim.models.Word2Vec.load('data/userid.word2vec')
+    file=open('data/userid.txt')
     user_data= file.read().splitlines()
 
     EmbedingUser=[['0','1','2','3','4','5','6','7','8','9']]
@@ -95,8 +95,8 @@ def vecUser_train():
     return EmbedingUser
 
 def vecSCenery_train():
-    model = gensim.models.Word2Vec.load(r"D:\git\love-to-travel\love-to-travel-cloud\travelservice\src\main\resources\static\tensorflowRecommendation\data\sceneryId.word2vec")
-    file=open(r'D:\git\love-to-travel\love-to-travel-cloud\travelservice\src\main\resources\static\tensorflowRecommendation\data\sceneryId.txt')
+    model = gensim.models.Word2Vec.load('data/sceneryId.word2vec')
+    file=open('data/sceneryId.txt')
     scenery_data= file.read().splitlines()
 
     EmbedingScenery=[['0','1','2','3','4','5','6','7','8','9']]
